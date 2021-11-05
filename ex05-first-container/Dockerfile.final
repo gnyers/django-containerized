@@ -1,0 +1,9 @@
+# Uncomment/change the content as instructed in the exercise
+
+FROM python:3-alpine
+
+WORKDIR /app
+
+RUN apk update && apk add py3-django
+
+CMD ["python3.9"]
