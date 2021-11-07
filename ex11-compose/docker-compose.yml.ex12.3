@@ -1,0 +1,16 @@
+# course/ex11-compose/docker-compose.yml.ex12.3
+---
+services:
+  newspaper:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - newspaper-data:/data
+    environment:
+      - DATABASE_URL=sqlite:////data/db.sqlite3
+      - ADMIN_USER=alice                          # new!
+      - ADMIN_EMAIL=alice@example.com             # new!
+      - ADMIN_PW=S4cret!                          # new!
+volumes:
+  newspaper-data: null

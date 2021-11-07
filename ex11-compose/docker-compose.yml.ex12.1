@@ -1,0 +1,12 @@
+# course/ex11-compose/docker-compose.yml.ex12.1
+---
+version: "3"
+services:
+  newspaper:
+    build: .
+    ports:
+      - "8000:8000" 
+    volumes:                                     # new!
+      - "newspaper-data:/data"                   # new!
+volumes:                                         # new!
+  newspaper-data: null                           # new!

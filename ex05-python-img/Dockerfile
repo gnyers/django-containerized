@@ -1,3 +1,4 @@
+# course/ex05-python-img/Dockerfile
 # Uncomment the lines below as instructed in the exercise
 
 ### The base image for this container:
@@ -14,9 +15,7 @@
 ### See: https://docs.docker.com/engine/reference/builder/#workdir
 # WORKDIR /app
 
-### Sets the default (but overrideable!) command that Docker will 
+### Sets the default (but overrideable!) command that Docker will
 ### execute as PID 1
 ### See: https://docs.docker.com/engine/reference/builder/#cmd
 # CMD ["python3"]
-
-

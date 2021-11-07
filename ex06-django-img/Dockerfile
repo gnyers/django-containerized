@@ -1,3 +1,4 @@
+# course/ex06-django-img/Dockerfile
 # Uncomment/change the content as instructed in the exercise
 
 FROM python:3-alpine
@@ -9,5 +10,3 @@ RUN apk update && apk add py3-django
 # RUN django-admin startproject config .
 
 CMD ["python3.9"]
-
-

@@ -1,0 +1,13 @@
+# course/ex11-compose/docker-compose.yml.ex12.2
+---
+services:
+  newspaper:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - newspaper-data:/data
+    environment:                                  # new!
+      - DATABASE_URL=sqlite:////data/db.sqlite3   # new!
+volumes:
+  newspaper-data: null
