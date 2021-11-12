@@ -1,0 +1,28 @@
+# course/ex15-sqldb/docker-compose.yml.ex15.1
+---
+services:
+  db:
+    image: mariadb:10
+    volumes:
+      - newspaper-db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${ADMIN_PW}          # new!
+      - MYSQL_USER=${ADMIN_USER}                 # new!
+      - MYSQL_PASSWORD=${ADMIN_PW}               # new!
+      - MYSQL_DATABASE=newspaper                 # new!
+  newspaper:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - newspaper-data:/data
+    environment:
+      - DATABASE_URL=mysql://${ADMIN_USER}:${ADMIN_PW}@db:3306/newspaper   # changed!
+      - ADMIN_USER=${ADMIN_USER}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PW=${ADMIN_PW}
+    depends_on:                                  # new!
+      - db                                       # new!
+volumes:
+  newspaper-db: null                             # new!
+  newspaper-data: null
