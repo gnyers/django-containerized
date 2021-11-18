@@ -21,7 +21,7 @@ services:
       - ADMIN_USER=${ADMIN_USER}
       - ADMIN_EMAIL=${ADMIN_EMAIL}
       - ADMIN_PW=${ADMIN_PW}
-    depends_on:                                  # new!
+    deends_on:                                  # new!
       - db                                       # new!
 volumes:
   newspaper-db: null                             # new!

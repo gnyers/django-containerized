@@ -1,0 +1,23 @@
+#!/bin/sh
+# course/ex14-wsgi/newspaper/entrypoint.sh
+
+cd /app
+
+# Verify the availability of the ALLOWED_HOSTS env var
+ALLOWED_HOSTS=${ALLOWED_HOSTS:-"*"}
+
+echo "#-- Changing ALLOWED_HOSTS -> '$ALLOWED_HOSTS'"
+sed -i "/ALLOWED_HOSTS/s/^.*$/ALLOWED_HOSTS=['$ALLOWED_HOSTS']/g" \
+       django_project/settings.py
+
+echo "#-- Django: apply remaining DB migrations"
+python3.9 manage.py migrate
+
+echo "#-- Django: Collecting static files"                      # new!
+python3.9 manage.py collectstatic --no-input                    # new!
+
+echo "#-- Create superuser: $ADMIN_USER"
+python3.9 manage.py shell < createsuperuser.py
+
+echo "#-- Execute Django"
+gunicorn django_project.wsgi:application --bind 0.0.0.0:8000    # changed!

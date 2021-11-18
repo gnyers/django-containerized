@@ -1,2 +1,0 @@
-# django-containerized
-Django Containerized
